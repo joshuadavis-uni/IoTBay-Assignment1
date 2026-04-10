@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoTBay - Logged Out</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Logged Out</h1>
+        <p>You have been successfully logged out of IoTBay.</p>
+
+        <button class="btn" onclick="window.location.href='index.html'">
+            Return to Home
+        </button>
+    </div>
+
+    <script>
+        // Call the backend logout route to clear the server session
+        fetch('http://127.0.0.1:8080/auth/logout', {
+            method: 'POST',
+            credentials: 'include'
+        });
+
+        // Clear the frontend sessionStorage too
+        // This removes the user details stored by login.js or register.js
+        sessionStorage.clear();
+    </script>
+</body>
+</html>

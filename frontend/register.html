@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoTBay - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <p>Join IoTBay to browse and purchase IoT devices</p>
+
+        <!-- Registration form -->
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" placeholder="Enter your full name">
+            <span class="error" id="name_error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <span class="error" id="email_error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <span class="error" id="password_error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="text" id="phone" placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address (optional)</label>
+            <input type="text" id="address" placeholder="Enter your address">
+        </div>
+
+        <!-- General error message shown if registration fails -->
+        <span class="error" id="general_error"></span>
+
+        <button class="btn" onclick="register()">Register</button>
+
+        <div class="link">
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>
