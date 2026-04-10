@@ -17,7 +17,6 @@ async function login() {
     if (hasError) return;
 
     try {
-        // Send login request to backend
         const response = await fetch('http://127.0.0.1:8080/auth/login', {
             method: 'POST',
             headers: {
@@ -30,12 +29,10 @@ async function login() {
         const data = await response.json();
 
         if (data.success) {
-            // Store user details in sessionStorage for welcome page
             sessionStorage.setItem('full_name', data.full_name);
             sessionStorage.setItem('email', data.email);
             sessionStorage.setItem('user_type', data.user_type);
 
-            // Redirect to welcome page
             window.location.href = 'welcome.html';
         } else {
             showError('general_error', data.message);

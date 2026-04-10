@@ -17,14 +17,10 @@
     </div>
 
     <script>
-        // Call the backend logout route to clear the server session
         fetch('http://127.0.0.1:8080/auth/logout', {
             method: 'POST',
             credentials: 'include'
         });
-
-        // Clear the frontend sessionStorage too
-        // This removes the user details stored by login.js or register.js
         sessionStorage.clear();
     </script>
 </body>

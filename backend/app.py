@@ -6,7 +6,6 @@ from backend.routes.auth import auth_bp
 app = Flask(__name__)
 
 # Secret key is required for Flask sessions to work
-# In a real app this would be a long random string stored in an environment variable
 app.secret_key = 'iotbay-secret-key-2026'
 
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:8000"])

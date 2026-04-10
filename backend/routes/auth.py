@@ -1,8 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.controllers.auth_controller import register_user, login_user
 
-# A Blueprint is like a mini Flask app that handles a group of related routes
-# Here we're grouping all authentication routes (login, register) together
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/auth/register', methods=['POST'])
@@ -11,29 +9,29 @@ def register():
     Handles POST requests to /auth/register
     Expects JSON data with: full_name, email, password, phone (optional), address (optional)
     """
-    # Get the JSON data sent from the frontend
+
     data = request.get_json()
 
-    # Extract each field from the data, .get() returns None if field doesn't exist
+
     full_name = data.get('full_name')
     email = data.get('email')
     password = data.get('password')
-    phone = data.get('phone', '')       # optional, defaults to empty string
-    address = data.get('address', '')   # optional, defaults to empty string
-    user_type = data.get('user_type', 'customer')  # defaults to customer
+    phone = data.get('phone', '')       
+    address = data.get('address', '')   
+    user_type = data.get('user_type', 'customer')  
 
-    # Pass to the controller to handle the logic
+   
     result = register_user(full_name, email, password, phone, address, user_type)
 
     if result['success']:
-        # Store user info in session so we know who's logged in
+       
         session['user_id'] = result['user_id']
         session['full_name'] = result['full_name']
         session['email'] = result['email']
         session['user_type'] = result['user_type']
-        return jsonify(result), 201  # 201 means "Created" in HTTP
+        return jsonify(result), 201  
     else:
-        return jsonify(result), 400  # 400 means "Bad Request" in HTTP
+        return jsonify(result), 400  
 
 @auth_bp.route('/auth/login', methods=['POST'])
 def login():
@@ -48,14 +46,14 @@ def login():
     result = login_user(email, password)
 
     if result['success']:
-        # Store user info in session
+
         session['user_id'] = result['user_id']
         session['full_name'] = result['full_name']
         session['email'] = result['email']
         session['user_type'] = result['user_type']
-        return jsonify(result), 200  # 200 means "OK" in HTTP
+        return jsonify(result), 200  
     else:
-        return jsonify(result), 401  # 401 means "Unauthorised" in HTTP
+        return jsonify(result), 401 
 
 @auth_bp.route('/auth/logout', methods=['POST'])
 def logout():
@@ -63,7 +61,7 @@ def logout():
     Handles POST requests to /auth/logout
     Clears the server side session
     """
-    session.clear()  # removes all data from the server session
+    session.clear()  
     return jsonify({'success': True, 'message': 'Logged out successfully'}), 200
 
 @auth_bp.route('/auth/session', methods=['GET'])
